@@ -19,16 +19,21 @@ monday.com CRM implementation workflow for Claude Code. 4 phases: Research, Plan
 
 ## Installation
 
-Copy-paste the command for your platform. Installs fresh or updates if already installed.
+One command — copy-paste and run. Installs fresh or updates if already installed.
 
 **Mac / Linux / Git Bash:**
-```bash
-mkdir -p ~/.claude/commands && { [ -d ~/.claude/commands/monday-implement ] && git -C ~/.claude/commands/monday-implement pull || git clone https://github.com/Joyboyja/Monday-Implement.git ~/.claude/commands/monday-implement; }
+```
+git clone https://github.com/Joyboyja/Monday-Implement.git ~/.claude/commands/monday-implement 2>/dev/null || git -C ~/.claude/commands/monday-implement pull
+```
+
+**Windows (Command Prompt):**
+```
+git clone https://github.com/Joyboyja/Monday-Implement.git "%USERPROFILE%\.claude\commands\monday-implement" || git -C "%USERPROFILE%\.claude\commands\monday-implement" pull
 ```
 
 **Windows (PowerShell):**
-```powershell
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\commands" | Out-Null; if (Test-Path "$env:USERPROFILE\.claude\commands\monday-implement") { git -C "$env:USERPROFILE\.claude\commands\monday-implement" pull } else { git clone https://github.com/Joyboyja/Monday-Implement.git "$env:USERPROFILE\.claude\commands\monday-implement" }
+```
+git clone https://github.com/Joyboyja/Monday-Implement.git "$env:USERPROFILE\.claude\commands\monday-implement"; if (-not $?) { git -C "$env:USERPROFILE\.claude\commands\monday-implement" pull }
 ```
 
 ## Usage
