@@ -80,8 +80,15 @@ monday-implement/
   execute.md         # Phase 3: Execute
   review.md          # Phase 4: Review
   full.md            # All 4 phases orchestrated
+  examples/          # Reference outputs showing what good looks like
   .gitignore         # Excludes generated artifacts
 ```
+
+## Examples
+
+The `examples/` folder contains anonymized reference outputs from a real implementation project (NGO migrating from Salesforce). Use these as a benchmark for output quality and format:
+
+- `examples/research-summary.md` -- Research phase output with [DESIGN IMPACT] flags, platform limitations tables, and third-party tool evaluations
 
 ## Critical Rules (All Phases)
 

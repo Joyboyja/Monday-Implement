@@ -1,6 +1,7 @@
 # Generated artifacts (per-project, not part of the commands repo)
-research-summary.md
-implementation-spec.md
-execution-log.md
-verification-report.md
+/research-summary.md
+/implementation-spec.md
+/execution-log.md
+/verification-report.md
+/project-config.yaml
 .DS_Store
