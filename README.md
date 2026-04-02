@@ -89,6 +89,7 @@ monday-implement/
 The `examples/` folder contains anonymized reference outputs from a real implementation project (NGO migrating from Salesforce). Use these as a benchmark for output quality and format:
 
 - `examples/research-summary.md` -- Research phase output with [DESIGN IMPACT] flags, platform limitations tables, and third-party tool evaluations
+- `examples/implementation-spec.md` -- Plan phase output: full 12-section spec with 33+ columns, 11-step workflow, 21 automations, and email templates
 - `examples/execution-log.md` -- Execute phase output showing MCP tool calls, fix sequence, and deviation tracking
 - `examples/verification-report.md` -- Review phase output with phase-by-phase pass/fail, column-by-column verification, and action items
 
