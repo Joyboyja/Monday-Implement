@@ -96,6 +96,8 @@ For each board, specify:
 - **Groups** (if the board should be segmented, e.g., by region or status)
 - **Associated form** (if the board is created via a form, note this -- the form creates the board)
 
+**Entity boards for growing data sets:** Any data source that is ever-growing (accounts, clients, contacts, vendors, projects, counterparties, etc.) MUST be its own board, not a dropdown or status column. Dropdowns have a practical limit of ~2,000 values and become unmanageable at scale. Instead, create a dedicated board for that entity and use `connect_boards` columns on other boards to reference it. This also enables richer data per entity (multiple columns, activity tracking, dashboards) that a dropdown cannot provide.
+
 Present this as a clear hierarchy showing how boards relate to each other.
 
 ### 3. COLUMN SPECIFICATIONS (per board)
@@ -108,6 +110,8 @@ For each board, produce a table with these columns:
 - Column types must use exact monday.com column types: `text`, `long_text`, `numbers`, `status`, `dropdown`, `date`, `people`, `email`, `phone`, `link`, `file`, `checkbox`, `country`, `formula`, `auto_number`, `connect_boards`, `mirror`, `rating`, `timeline`, `time_tracking`, `tags`, `color_picker`, `location`.
 
 Flag any field where monday.com has a known limitation vs. the current system (e.g., long_text has a 2000-character limit; rich text formatting differences).
+
+**IMPORTANT — Dropdown vs. Board decision:** When specifying a column that references a list of entities (accounts, clients, vendors, projects, contacts, etc.), evaluate whether the list is **static and small** (use dropdown) or **growing and large** (use a dedicated board + connect_boards). If the list will grow beyond ~200 items or if each entity needs its own metadata (address, contact info, status, history), it MUST be a separate board with connect_boards, not a dropdown. Flag this decision explicitly in the Notes column.
 
 ### 4. FORMS SPECIFICATION
 For each intake form:
@@ -212,6 +216,7 @@ Common limitations to watch for during planning:
 | `long_text` max 2000 chars | Split into multiple fields or use docs |
 | No native conditional field visibility on boards | Use form conditions only; board columns always visible |
 | Status column max ~40 labels | Use dropdown for large value sets |
+| Dropdown columns impractical beyond ~200 items, hard limit ~2,000 | For ever-growing entity lists (accounts, clients, vendors, projects, contacts), create a dedicated board and use connect_boards instead of dropdown |
 | Mirror columns are read-only | Use automations to sync writable copies |
 | No native calculated fields across boards | Use formula + mirror, or custom integrations |
 | Forms cannot pre-populate fields | Use API or automation post-submission |
