@@ -153,6 +153,40 @@ At the end, produce a prioritized list of fixes:
 2. ...
 ```
 
+### Manual Setup Checklist (User Must Complete)
+
+After the MCP execution phase, collect ALL items tagged `[MANUAL]` in the spec that the AI could not build. Present them as an ordered checklist the user must complete in the monday.com browser UI before go-live.
+
+**List items in the order they should be executed** (dependencies first):
+
+```markdown
+## Manual Setup — Complete These in monday.com Browser UI
+
+### 1. Automations (must be configured manually — not available via API)
+For each automation from spec Section 6, list:
+- [ ] **[Board Name]**: [Trigger] → [Action] — [spec reference]
+- [ ] **[Board Name]**: [Trigger] → [Action] — [spec reference]
+- ...
+
+### 2. Integrations (require OAuth/credential setup)
+- [ ] **[Integration Name]**: [Setup instructions] — [spec reference]
+- ...
+
+### 3. Board Permissions & Access
+- [ ] **[Board Name]**: Set to [permission level] for [user group]
+- ...
+
+### 4. Board Views (filtered/Kanban/timeline views)
+- [ ] **[Board Name]**: Create [view name] filtered by [criteria]
+- ...
+
+### 5. Other Manual Items
+- [ ] [Any other items the AI flagged as MANUAL during execution]
+- ...
+```
+
+Include the specific trigger/condition/action details from the spec so the user can configure each automation without re-reading the full spec. This checklist is the bridge between "AI built the structure" and "system is fully operational."
+
 ---
 
 ## Phase Completion
@@ -160,5 +194,6 @@ At the end, produce a prioritized list of fixes:
 After generating the verification report:
 1. Save `verification-report.md`
 2. Present the summary table to the user
-3. If all sections PASS: confirm the implementation is ready for client UAT
-4. If any sections FAIL: list the specific fixes needed and offer to re-run execution for those items
+3. Present the Manual Setup Checklist — this is the user's post-execution todo list
+4. If all sections PASS: confirm the structure is correct and the user can proceed with manual setup
+5. If any sections FAIL: list the specific fixes needed and offer to re-run execution for those items

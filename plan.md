@@ -193,6 +193,9 @@ For each deferred item:
 - Flag every assumption with **[ASSUMPTION]** so the builder can verify with the client.
 - Flag every known monday.com limitation with **[PLATFORM LIMITATION]** so the builder can plan workarounds.
 - Cross-reference document sources when a requirement comes from a specific document (e.g., "per the discovery call transcript" or "per Sandy's email dated [date]").
+- **Tag every spec item as `[MCP]` or `[MANUAL]`** using the MCP Capability Reference in `_mcp-check.md`. This tells the execution phase what can be automated and tells the review phase what to include in the manual handoff checklist. Common tagging:
+  - Boards, columns, groups, items, forms, docs, dashboards, widgets → **[MCP]**
+  - Automations, integrations, board permissions, views, email templates, SSO → **[MANUAL]**
 
 ## Critical Planning Rules
 1. Do NOT invent requirements. Every field, automation, and workflow must trace back to something in the attached documents.
