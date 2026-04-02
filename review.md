@@ -9,32 +9,9 @@ Audit the monday.com build against the original implementation spec. Produce a p
 
 ---
 
-## CRITICAL RULES (ALL PHASES)
+**Read and follow `_rules.md`** (canonical critical rules for all phases).
 
-1. **No hardcoding.** All solutions must be generic and pattern-based, not tied to specific examples.
-2. **Root cause, not bandaid.** Fix underlying structural or data issues, not symptoms.
-3. **Data integrity first.** Use consistent, authoritative data sources throughout.
-4. **Ask before changing.** If you have questions, ask them before making changes.
-5. **Trace every requirement.** Every element in the spec must trace back to a source document. Every element in the build must trace back to the spec.
-
----
-
-## MCP Availability Check (REQUIRED)
-
-Before starting verification, verify the monday.com MCP tool is available:
-
-```
-Run: mcp__monday__get_user_context
-```
-
-- **If the tool exists and returns data**: Proceed with verification. Confirm with the user that this is the correct account for the project. If they need to switch to a different monday.com account, instruct them: "Go to `/mcp`, select **monday**, and reauthenticate with the correct account." Do not proceed until the correct account is confirmed.
-- **If the tool does not exist or errors**: **STOP. Do not proceed.** Prompt the user:
-  > "monday.com MCP server is not connected. The Review phase requires it to query board state and verify the build.
-  >
-  > Would you like to install it now? Install instructions: https://github.com/mondaycom/mcp (yes/no)"
-  >
-  > If **yes**: Guide the user through installation per the repo README, then re-check with `mcp__monday__get_user_context`. Only proceed once the check passes.
-  > If **no**: Stop. Cannot verify without MCP.
+**Read and follow `_mcp-check.md`** (canonical MCP availability check). This phase **requires** MCP -- stop if not available.
 
 ---
 
@@ -42,7 +19,12 @@ Run: mcp__monday__get_user_context
 
 1. Read `implementation-spec.md` -- this is the source of truth
 2. Read `execution-log.md` -- this is the build record
-3. Use MCP tools to query the actual state of each board in monday.com
+3. Use MCP tools to query the actual state of each board in monday.com:
+   - `mcp__monday__get_board_info` -- get board structure, columns, groups
+   - `mcp__monday__get_board_items_page` -- get items to verify data migration
+   - `mcp__monday__get_full_board_data` -- comprehensive board state for deep audit
+   - `mcp__monday__get_form` -- verify form configuration
+   - `mcp__monday__board_insights` -- automation and activity summary
 
 If either file is missing, instruct the user to run the prerequisite phase first.
 
@@ -86,7 +68,17 @@ For each board in the spec, query it via MCP and verify against the spec. Do not
 - Signature workflows route to the correct signers
 - If integrations were deferred, note them as N/A with the reason
 
-### 6. GAP REPORT
+### 6. DATA MIGRATION VALIDATION
+If the spec includes a data migration plan (Section 8):
+- Use `mcp__monday__get_board_items_page` to query migrated records
+- Verify **record counts** match the expected volumes from the spec
+- **Spot-check field accuracy**: sample 5-10 records per board and compare field values against source data
+- Confirm **legacy IDs** were preserved in the correct column
+- Verify **auto-number columns** are not conflicting with migrated legacy IDs
+- Check **dropdown/status values** on migrated records match the allowed values (no orphaned values)
+- Verify **connected board links** on migrated records point to the correct related items
+
+### 7. GAP REPORT
 - List anything in the spec that was NOT built, with a reason
 - List anything that was built but DIFFERS from the spec, with a reason
 - List any platform limitations encountered and the workarounds applied
@@ -111,6 +103,7 @@ Save as `verification-report.md` in the project directory.
 | Workflow Validation | PASS/FAIL | [summary] |
 | Form Validation | PASS/FAIL | [summary] |
 | Integration Check | PASS/FAIL/N-A | [summary] |
+| Data Migration | PASS/FAIL/N-A | [summary] |
 | Gap Report | -- | [count] gaps identified |
 ```
 

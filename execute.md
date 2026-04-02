@@ -9,32 +9,9 @@ Execute the implementation spec using the monday.com MCP tool. Build boards, col
 
 ---
 
-## CRITICAL RULES (ALL PHASES)
+**Read and follow `_rules.md`** (canonical critical rules for all phases).
 
-1. **No hardcoding.** All solutions must be generic and pattern-based, not tied to specific examples.
-2. **Root cause, not bandaid.** Fix underlying structural or data issues, not symptoms.
-3. **Data integrity first.** Use consistent, authoritative data sources throughout.
-4. **Ask before changing.** If you have questions, ask them before making changes.
-5. **Trace every requirement.** Every element in the spec must trace back to a source document. Every element in the build must trace back to the spec.
-
----
-
-## MCP Availability Check (REQUIRED)
-
-Before starting execution, verify the monday.com MCP tool is available:
-
-```
-Run: mcp__monday__get_user_context
-```
-
-- **If the tool exists and returns data**: Proceed with execution. Confirm with the user that this is the correct account for the project. If they need to switch to a different monday.com account, instruct them: "Go to `/mcp`, select **monday**, and reauthenticate with the correct account." Do not proceed until the correct account is confirmed.
-- **If the tool does not exist or errors**: **STOP. Do not proceed.** Prompt the user:
-  > "monday.com MCP server is not connected. The Execution phase requires it to create boards, columns, and automations.
-  >
-  > Would you like to install it now? Install instructions: https://github.com/mondaycom/mcp (yes/no)"
-  >
-  > If **yes**: Guide the user through installation per the repo README, then re-check with `mcp__monday__get_user_context`. Only proceed once the check passes.
-  > If **no**: Stop. Cannot execute without MCP.
+**Read and follow `_mcp-check.md`** (canonical MCP availability check). This phase **requires** MCP -- stop if not available.
 
 ---
 
@@ -74,8 +51,8 @@ For each board in the spec, follow this sequence:
 2. Add backend-only columns (auto_number, connect_boards, mirror, formula, internal statuses)
 3. Create groups
 4. Configure automations (confirm each with user first)
-5. Set up connected board relationships
-6. Configure mirror columns
+5. Set up connected board relationships (confirm target board with user before linking -- wrong links cause cascading issues)
+6. Configure mirror columns (confirm source column with user before creating)
 7. Output board completion checklist
 ```
 
@@ -84,8 +61,8 @@ For boards without forms:
 1. Create board
 2. Add all columns
 3. Create groups
-4. Configure automations
-5. Set up relationships and mirrors
+4. Configure automations (confirm each with user first)
+5. Set up relationships and mirrors (confirm target boards with user before linking)
 6. Output board completion checklist
 ```
 

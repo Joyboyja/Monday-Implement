@@ -4,32 +4,11 @@ Conduct foundational research before analyzing client documents. This ensures th
 
 ---
 
-## CRITICAL RULES (ALL PHASES)
+**Read and follow `_rules.md`** (canonical critical rules for all phases).
 
-1. **No hardcoding.** All solutions must be generic and pattern-based, not tied to specific examples.
-2. **Root cause, not bandaid.** Fix underlying structural or data issues, not symptoms.
-3. **Data integrity first.** Use consistent, authoritative data sources throughout.
-4. **Ask before changing.** If you have questions, ask them before making changes.
-5. **Trace every requirement.** Every element in the spec must trace back to a source document. Every element in the build must trace back to the spec.
+**Read and follow `_mcp-check.md`** (canonical MCP availability check). This phase can proceed without MCP.
 
----
-
-## MCP Availability Check
-
-Before starting, verify the monday.com MCP tool is available:
-
-```
-Run: mcp__monday__get_user_context
-```
-
-- **If the tool exists and returns data**: MCP is available. Note the account info for later phases. Confirm with the user that this is the correct account for the project. If they need to switch to a different monday.com account, instruct them: "Go to `/mcp`, select **monday**, and reauthenticate with the correct account."
-- **If the tool does not exist or errors**: monday.com MCP is NOT installed. Prompt the user:
-  > "monday.com MCP server is not connected. The Research and Planning phases can proceed without it, but the Execution and Verification phases require it.
-  >
-  > Would you like to install it now? Install instructions: https://github.com/mondaycom/mcp (yes/no)"
-  >
-  > If **yes**: Guide the user through installation per the repo README, then re-check with `mcp__monday__get_user_context`.
-  > If **no**: Proceed with Research/Planning only. Remind the user to install before running `/monday-implement:execute`.
+**Read `config.md`** and ask the user to fill in project variables if not already done. Save to `project-config.yaml`.
 
 ---
 
@@ -37,9 +16,22 @@ Run: mcp__monday__get_user_context
 
 Read the user's attached documents first to identify what needs to be researched, then conduct web searches for each area below.
 
+**IMPORTANT**: Always search for the most recent and up-to-date information. monday.com updates features frequently. Append the current year to search queries (e.g., "2026") and prefer results from the last 6 months. If you find conflicting information across sources, use the most recent source and flag the conflict with **[VERIFY PLATFORM CAPABILITY]**.
+
 ### 1A: monday.com Platform Research
 
-Research and document:
+Research and document using queries like these (adapt to project specifics):
+
+- `monday.com column types and limitations [current year]`
+- `monday.com long_text column character limit [current year]`
+- `monday.com form builder conditional logic capabilities [current year]`
+- `monday.com automation limits per board rate limits [current year]`
+- `monday.com API rate limits batch operations [current year]`
+- `monday.com connect_boards column linked items limit [current year]`
+- `monday.com auto-number column format configuration [current year]`
+- `monday.com CRM product features lead contact deal [current year]`
+
+Specifically document:
 
 - Current column types available in monday.com CRM and their limitations (character limits, behavior quirks, known bugs)
 - Native automation capabilities and limits (trigger types, action types, maximum automations per board, rate limits)

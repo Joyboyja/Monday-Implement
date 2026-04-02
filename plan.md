@@ -6,32 +6,11 @@ Analyze client documentation and produce a comprehensive monday.com implementati
 
 ---
 
-## CRITICAL RULES (ALL PHASES)
+**Read and follow `_rules.md`** (canonical critical rules for all phases).
 
-1. **No hardcoding.** All solutions must be generic and pattern-based, not tied to specific examples.
-2. **Root cause, not bandaid.** Fix underlying structural or data issues, not symptoms.
-3. **Data integrity first.** Use consistent, authoritative data sources throughout.
-4. **Ask before changing.** If you have questions, ask them before making changes.
-5. **Trace every requirement.** Every element in the spec must trace back to a source document. Every element in the build must trace back to the spec.
+**Read and follow `_mcp-check.md`** (canonical MCP availability check). This phase can proceed without MCP.
 
----
-
-## MCP Availability Check
-
-Before starting, verify the monday.com MCP tool is available:
-
-```
-Run: mcp__monday__get_user_context
-```
-
-- **If the tool exists and returns data**: MCP is available. Note the account info. Confirm with the user that this is the correct account for the project. If they need to switch to a different monday.com account, instruct them: "Go to `/mcp`, select **monday**, and reauthenticate with the correct account."
-- **If the tool does not exist or errors**: monday.com MCP is NOT installed. Prompt the user:
-  > "monday.com MCP server is not connected. Planning can proceed without it, but the Execution and Verification phases require it.
-  >
-  > Would you like to install it now? Install instructions: https://github.com/mondaycom/mcp (yes/no)"
-  >
-  > If **yes**: Guide the user through installation per the repo README, then re-check with `mcp__monday__get_user_context`.
-  > If **no**: Proceed with Planning. Remind the user to install before running `/monday-implement:execute`.
+**Read `project-config.yaml`** if it exists (from research phase). If not, read `config.md` and ask the user to fill in project variables.
 
 ---
 
@@ -237,7 +216,7 @@ Common limitations to watch for during planning:
 | No native calculated fields across boards | Use formula + mirror, or custom integrations |
 | Forms cannot pre-populate fields | Use API or automation post-submission |
 | No native approval workflow engine | Build with status columns + automations + notifications |
-| connect_boards limited to 500 linked items | Paginate or restructure for high-volume relationships |
+| connect_boards linked items limit **[VERIFY PLATFORM CAPABILITY]** | Paginate or restructure for high-volume relationships -- verify current limit in research phase |
 | Automations have a monthly action quota | Monitor usage on Pro/Enterprise plans |
 | No native duplicate detection | Use integrations or custom API checks |
 | Subitems have limited column types | Design around main items where possible |

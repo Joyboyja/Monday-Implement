@@ -50,18 +50,42 @@ Or run `/monday-implement:full` to execute all 4 phases with user confirmation b
 | Execute | Sonnet 4.6 | Fast, accurate MCP tool execution |
 | Review | Opus 4.6 | Careful spec-to-build verification |
 
+## Compatibility
+
+This tool is built for **Claude Code** (CLI, desktop app, web app, and IDE extensions). It uses Claude Code's custom commands system (`~/.claude/commands/`) and the monday.com MCP server. It does not work with Claude Desktop projects or claude.ai chat -- only environments that support slash commands and MCP tools.
+
 ## Artifacts
 
-A full run produces 4 audit trail files in your project directory:
+A full run produces 5 audit trail files in your project directory:
 
 ```
+project-config.yaml        # Project variables (client, workspace, tools)
 research-summary.md        # Platform & context research
 implementation-spec.md     # Full 12-section build spec
 execution-log.md           # Action-by-action build record
 verification-report.md     # Pass/fail audit report
 ```
 
+These are generated per-project and excluded from the commands repo via `.gitignore`.
+
+## File Structure
+
+```
+monday-implement/
+  _rules.md          # Shared critical rules (single source of truth)
+  _mcp-check.md      # Shared MCP check logic (single source of truth)
+  config.md          # Project config template
+  research.md        # Phase 1: Research
+  plan.md            # Phase 2: Plan
+  execute.md         # Phase 3: Execute
+  review.md          # Phase 4: Review
+  full.md            # All 4 phases orchestrated
+  .gitignore         # Excludes generated artifacts
+```
+
 ## Critical Rules (All Phases)
+
+Defined in `_rules.md` and referenced by all phase files:
 
 1. **No hardcoding.** All solutions must be generic and pattern-based.
 2. **Root cause, not bandaid.** Fix underlying structural or data issues, not symptoms.
