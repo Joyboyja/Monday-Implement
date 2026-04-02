@@ -1,9 +1,9 @@
 # Verification Report
 
-**Client:** CS Marketing Operations  
+**Client:** [Client Name] — Marketing Operations  
 **Implementation:** Project Intake & Workflow Management  
-**Verified against:** Live Monday.com API data, March 30, 2026  
-**Prepared by:** [Your Name], Workiflow LLC
+**Verified against:** Live Monday.com API data, [Date]  
+**Prepared by:** [Your Name]
 
 ---
 
@@ -11,16 +11,16 @@
 
 | Phase | Section | Status | Details |
 |-------|---------|--------|---------|
-| 1 | Workspace | PASS | Workiflow POC (14776262) — used existing workspace per user instruction |
+| 1 | Workspace | PASS | [Workspace Name] ([workspace_id]) — used existing workspace per user instruction |
 | 2 | Board Creation | PASS | 3 boards created with correct names and types |
 | 3 | Column Schema (Boards 1 & 2) | PASS | 26 columns each (name + 25 custom) — all 22 spec'd columns confirmed |
 | 4 | Groups (Boards 1 & 2) | PASS | 9/9 workflow groups in correct order + 1 default |
 | 5 | Column Schema (Board 3) | PASS | 22 columns (name + 21 custom) — all spec'd columns confirmed |
 | 6 | Groups (Board 3) | PASS | 4/4 groups in correct order + 1 default |
-| 7 | Form A — Strategic Lead | CREATED | 2 forms created, routing needed (see notes) |
+| 7 | Form A — Lead Assignment | CREATED | 2 forms created, routing needed (see notes) |
 | 8 | Form B — General Submission | CREATED | 1 form created, routing needed (see notes) |
-| 9 | Demo Items (Direct Lending) | PASS | 3/3 items with correct groups and tiers |
-| 10 | Demo Items (Pre-Approval) | PASS | 1/1 item in correct group |
+| 9 | Demo Items (Board 1) | PASS | 3/3 items with correct groups and tiers |
+| 10 | Demo Items (Board 3) | PASS | 1/1 item in correct group |
 | Bonus | Doc + Dashboard | CREATED | Implementation guide and overview dashboard |
 
 **Final Score: 10/10 phases executed — 8 PASS, 2 CREATED (forms need routing)**
@@ -31,7 +31,7 @@
 
 **Status:** PASS
 
-Workiflow POC (14776262) — used existing workspace per user instruction.
+[Workspace Name] ([workspace_id]) — used existing workspace per user instruction.
 
 ---
 
@@ -41,9 +41,9 @@ Workiflow POC (14776262) — used existing workspace per user instruction.
 
 | Board | ID | Type |
 |-------|-----|------|
-| CS — Direct Lending Projects | 18406333202 | Main |
-| CS — Mortgages & Deposits Projects | 18406333228 | Main |
-| CS — Pre-Approval Queue | 18406333254 | Main |
+| [Division A] — Projects | [board_id_1] | Main |
+| [Division B] — Projects | [board_id_2] | Main |
+| [Pre-Approval Queue] | [board_id_3] | Main |
 
 ---
 
@@ -56,9 +56,9 @@ Board 2: 26 columns (name + 25 custom) — identical schema confirmed.
 
 ### Dropdown/Status Value Verification
 
-- Tier labels: Cheetah / Orca / Otter / Goldfish with correct colors -- PASS
+- Priority tier labels: 4 tiers with correct colors -- PASS
 - Brand dropdown: 6 options -- PASS
-- Content/Design teams: correct options -- PASS
+- Team assignment dropdowns: correct options -- PASS
 
 ---
 
@@ -80,8 +80,8 @@ Board 2: 9 workflow groups in correct order + 1 default "Group Title"
 22 columns (name + 21 custom) — all spec'd columns confirmed.
 
 - Approval Status: Pending / Approved / Rejected / Needs Info -- PASS
-- LOB dropdown: 5 options -- PASS
-- Strategic Lead Assigned: people column -- PASS
+- Line of Business dropdown: 5 options -- PASS
+- Lead Assigned: people column -- PASS
 
 ---
 
@@ -95,14 +95,14 @@ Pending Approval / Approved — Ready to Move / Rejected / Needs More Info -- PA
 
 ---
 
-## Phase 7: Form A — Strategic Lead
+## Phase 7: Form A — Lead Assignment
 
 **Status:** CREATED (see notes)
 
 | Form | Questions | Token | Board Created |
 |------|-----------|-------|---------------|
-| Form A (DL) | 20 | 36a2ee... | 18406340779 |
-| Form A (M&D) | 20 | e173c0... | 18406341640 |
+| Form A ([Division A]) | 20 | [token_1]... | [form_board_id_1] |
+| Form A ([Division B]) | 20 | [token_2]... | [form_board_id_2] |
 
 **[ACTION REQUIRED]** Forms create their own boards. Need automation to push items from form boards to main project boards, OR recreate forms natively on existing boards via Monday.com UI.
 
@@ -114,33 +114,33 @@ Pending Approval / Approved — Ready to Move / Rejected / Needs More Info -- PA
 
 | Form | Questions | Token | Board Created |
 |------|-----------|-------|---------------|
-| Form B | 21 | cca587... | 18406343906 |
+| Form B | 21 | [token_3]... | [form_board_id_3] |
 
 Same note as Phase 7 — form creates own board. Routing automation or form recreation needed.
 
 ---
 
-## Phase 9: Demo Items (Direct Lending)
+## Phase 9: Demo Items (Board 1)
 
 **Status:** PASS (3/3)
 
-| Item | Group | Tier |
-|------|-------|------|
-| Q2 Rate Refresh | New Requests | Orca |
-| HELOC Launch | Content In Progress | Cheetah |
-| GIC Rate Update | Completed | Goldfish |
+| Item | Group | Priority |
+|------|-------|----------|
+| Sample Project Alpha | New Requests | Tier 2 |
+| Sample Project Beta | Content In Progress | Tier 1 |
+| Sample Project Gamma | Completed | Tier 4 |
 
 Board items_count = 3 confirmed via API.
 
 ---
 
-## Phase 10: Demo Items (Pre-Approval)
+## Phase 10: Demo Items (Board 3)
 
 **Status:** PASS (1/1)
 
 | Item | Group |
 |------|-------|
-| Branch Referral Card Redesign | Pending Approval |
+| Sample Request — Design Review | Pending Approval |
 
 Board items_count = 1 confirmed via API.
 
@@ -150,8 +150,8 @@ Board items_count = 1 confirmed via API.
 
 **Status:** CREATED
 
-- Implementation Guide doc (39724233) in workspace -- PASS
-- Overview Dashboard (36371156) connected to all 3 boards -- PASS
+- Implementation Guide doc ([doc_id]) in workspace -- PASS
+- Overview Dashboard ([dashboard_id]) connected to all 3 boards -- PASS
 
 ---
 
@@ -161,15 +161,15 @@ Board items_count = 1 confirmed via API.
 
 | Column | Type | Status |
 |--------|------|--------|
-| Tier | status | PASS |
+| Priority Tier | status | PASS |
 | Brand | dropdown (6 opts) | PASS |
 | Project Type | status | PASS |
 | Requirements | status (4 opts) | PASS |
-| Strategic Lead | people | PASS |
-| Content Team | dropdown | PASS |
-| Content Person | people | PASS |
-| Design Team | dropdown | PASS |
-| Design Person | people | PASS |
+| Lead Assigned | people | PASS |
+| Team A | dropdown | PASS |
+| Team A Person | people | PASS |
+| Team B | dropdown | PASS |
+| Team B Person | people | PASS |
 | Requestor | text | PASS |
 | Requestor Dept | text | PASS |
 | Deadline | date | PASS |
@@ -179,11 +179,11 @@ Board items_count = 1 confirmed via API.
 | Brief Description | long_text | PASS |
 | Key Objectives | long_text | PASS |
 | Key Messages | long_text | PASS |
-| Design Reqs | long_text | PASS |
+| Design Requirements | long_text | PASS |
 | Impact if Missed | long_text | PASS |
 | Budget | text | PASS |
 | Cost Centre | text | PASS |
-| Brief Attach | file | PASS |
+| Brief Attachment | file | PASS |
 | Supporting Files | file | PASS |
 | Stage Timer | time_tracking | PASS |
 | Notes | long_text | PASS |
@@ -192,7 +192,7 @@ Board items_count = 1 confirmed via API.
 
 ### Board 3 (Pre-Approval) — 21 required columns
 
-All 21 confirmed: Requestor, Dept, LOB, Brand, Project Type, Brief Desc, Key Objectives, Requirements, Deadline, Flexible, Channel, Target Market, Key Messages, Design Reqs, Impact, Budget, Cost Centre, Approvers, Brief Attach, Supporting Files, Approval Status, Strategic Lead Assigned, Reviewer Notes.
+All 21 confirmed: Requestor, Dept, LOB, Brand, Project Type, Brief Desc, Key Objectives, Requirements, Deadline, Flexible, Channel, Target Market, Key Messages, Design Reqs, Impact, Budget, Cost Centre, Approvers, Brief Attachment, Supporting Files, Approval Status, Lead Assigned, Reviewer Notes.
 
 **Result: 21/21 columns present and correct type**
 
@@ -205,7 +205,7 @@ All 21 confirmed: Requestor, Dept, LOB, Brand, Project Type, Brief Desc, Key Obj
 
 ## Recommended Fixes (quality improvements)
 
-1. **Form board cleanup** -- After routing is configured, archive or delete the standalone form-created boards (18406340779, 18406341640, 18406343906) to avoid duplicate data entry points.
+1. **Form board cleanup** -- After routing is configured, archive or delete the standalone form-created boards ([form_board_id_1], [form_board_id_2], [form_board_id_3]) to avoid duplicate data entry points.
 
 ## Client Confirmations Needed
 
